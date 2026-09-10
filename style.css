@@ -76,8 +76,25 @@ button {
 }
 
 button:hover { background-color: #005999; }
-.action-btn { background-color: #28a745; width: 100%; }
-.action-btn:hover { background-color: #218838; }
+
+/* Global split utility buttons */
+.global-actions {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.action-btn { 
+    flex: 1;
+    font-size: 15px;
+    padding: 12px 5px;
+}
+
+.untap-btn { background-color: #28a745; }
+.untap-btn:hover { background-color: #218838; }
+
+.remove-all-btn { background-color: #dc3545; }
+.remove-all-btn:hover { background-color: #bd2130; }
 
 .options-row {
     display: flex;
@@ -236,5 +253,3 @@ button:hover { background-color: #005999; }
     }
     #tokenName { width: 100%; }
 }
-
-

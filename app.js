@@ -8,6 +8,7 @@ const tokenKeywordsInput = document.getElementById('tokenKeywords');
 const tokenQtyInput = document.getElementById('tokenQty');
 const addTokenBtn = document.getElementById('addTokenBtn');
 const untapAllBtn = document.getElementById('untapAllBtn');
+const removeAllBtn = document.getElementById('removeAllBtn');
 const battlefield = document.getElementById('battlefield');
 
 // Create token click handler
@@ -58,6 +59,15 @@ addTokenBtn.addEventListener('click', () => {
 untapAllBtn.addEventListener('click', () => {
     tokenList.forEach(token => token.isTapped = false);
     renderBattlefield();
+});
+
+// Remove All Button Action
+removeAllBtn.addEventListener('click', () => {
+    // Optional double check challenge to prevent accidental matches wipes
+    if (confirm("Are you sure you want to clear the entire battlefield?")) {
+        tokenList = [];
+        renderBattlefield();
+    }
 });
 
 // Render cards dynamically to HTML
@@ -149,9 +159,3 @@ window.removeToken = function(id) {
     tokenList = tokenList.filter(t => t.id !== id);
     renderBattlefield();
 };
-
-
-
-
-
-
