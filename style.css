@@ -1,0 +1,187 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+    padding: 20px;
+    margin: 0;
+}
+
+.tracker-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Controls styling */
+.controls-panel {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    border: 1px solid #333;
+}
+
+.input-row {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.options-row, .global-actions {
+    margin-bottom: 12px;
+}
+
+input[type="text"], input[type="number"] {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #2d2d2d;
+    color: white;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #007acc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover { background-color: #005999; }
+.action-btn { background-color: #28a745; }
+.action-btn:hover { background-color: #218838; }
+
+/* Grid layout for small card shapes */
+.battlefield-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding-top: 15px;
+}
+
+/* Card Shape Design (Blue background, White text) */
+.token-card {
+    background-color: #0f4c81; 
+    color: #ffffff;
+    width: 170px;
+    min-height: 230px;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+    padding: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, filter 0.2s ease;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* Tap visual mechanics */
+.token-card.tapped {
+    transform: rotate(15deg);
+    filter: brightness(0.7);
+    border-color: #aaaaaa;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.token-title {
+    font-size: 16px;
+    font-weight: bold;
+    word-break: break-word;
+    text-align: left;
+}
+
+.delete-btn {
+    background: transparent;
+    color: #ff4d4d;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0 0 0 5px;
+}
+
+/* Counters section inside card */
+.counters-area {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+    padding: 6px;
+    margin: 6px 0;
+    text-align: left;
+    font-size: 13px;
+}
+
+.counter-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.counter-btn {
+    padding: 1px 6px;
+    font-size: 11px;
+    background-color: #222;
+}
+
+/* Keyword Container Box */
+.keywords-area {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 8px;
+    justify-content: flex-start;
+}
+
+.keyword-badge {
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 12px;
+    text-transform: capitalize;
+}
+
+/* Bottom elements layout */
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+    margin-top: auto;
+}
+
+/* Tap / Untap trigger strip */
+.tap-zone {
+    background-color: rgba(255,255,255,0.2);
+    padding: 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    cursor: pointer;
+    user-select: none;
+    font-weight: bold;
+    flex-grow: 1;
+}
+
+/* Power & Toughness box */
+.pt-badge {
+    background-color: #ffffff;
+    color: #0f4c81;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid #000;
+    white-space: nowrap;
+}
+

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTG Token & Counter Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="tracker-container">
+        <h1>MTG Token Tracker</h1>
+        
+        <!-- Controls Section -->
+        <div class="controls-panel">
+            <div class="input-row">
+                <input type="text" id="tokenName" placeholder="Token Name (e.g., Angel)" style="width: 160px;">
+                <input type="text" id="tokenPower" placeholder="P" style="width: 35px; text-align: center;">
+                <span style="font-weight: bold; font-size: 20px;">/</span>
+                <input type="text" id="tokenToughness" placeholder="T" style="width: 35px; text-align: center;">
+                <input type="text" id="tokenKeywords" placeholder="Keywords (e.g., Flying, Vigilance)" style="width: 180px;">
+                <input type="number" id="tokenQty" value="1" min="1" style="width: 55px;">
+                <button id="addTokenBtn">Add</button>
+            </div>
+            
+            <div class="options-row">
+                <label>
+                    <input type="radio" name="layoutType" value="separate" checked> Separate Cards
+                </label>
+                <label>
+                    <input type="radio" name="layoutType" value="stacked"> Stack into One Card
+                </label>
+            </div>
+
+            <div class="global-actions">
+                <button id="untapAllBtn" class="action-btn">↩️ Untap All Tokens</button>
+            </div>
+        </div>
+
+        <!-- Board Area where tokens appear -->
+        <div id="battlefield" class="battlefield-grid"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
+
