@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- This line forces mobile screens to scale the app properly -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-select=no">
     <title>MTG Token & Counter Tracker</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -10,24 +11,29 @@
     <div class="tracker-container">
         <h1>MTG Token Tracker</h1>
         
-        <!-- Controls Section -->
+        <!-- Mobile-friendly controls panel -->
         <div class="controls-panel">
             <div class="input-row">
-                <input type="text" id="tokenName" placeholder="Token Name (e.g., Angel)" style="width: 160px;">
-                <input type="text" id="tokenPower" placeholder="P" style="width: 35px; text-align: center;">
-                <span style="font-weight: bold; font-size: 20px;">/</span>
-                <input type="text" id="tokenToughness" placeholder="T" style="width: 35px; text-align: center;">
-                <input type="text" id="tokenKeywords" placeholder="Keywords (e.g., Flying, Vigilance)" style="width: 180px;">
-                <input type="number" id="tokenQty" value="1" min="1" style="width: 55px;">
+                <input type="text" id="tokenName" placeholder="Name (e.g., Angel)">
+                <div class="pt-inputs">
+                    <input type="text" id="tokenPower" placeholder="P">
+                    <span class="slash">/</span>
+                    <input type="text" id="tokenToughness" placeholder="T">
+                </div>
+            </div>
+            
+            <div class="input-row-secondary">
+                <input type="text" id="tokenKeywords" placeholder="Keywords (Flying, Haste...)">
+                <input type="number" id="tokenQty" value="1" min="1">
                 <button id="addTokenBtn">Add</button>
             </div>
             
             <div class="options-row">
                 <label>
-                    <input type="radio" name="layoutType" value="separate" checked> Separate Cards
+                    <input type="radio" name="layoutType" value="separate" checked> Separate
                 </label>
                 <label>
-                    <input type="radio" name="layoutType" value="stacked"> Stack into One Card
+                    <input type="radio" name="layoutType" value="stacked"> Stacked
                 </label>
             </div>
 
@@ -43,5 +49,6 @@
     <script src="app.js"></script>
 </body>
 </html>
+
 
 

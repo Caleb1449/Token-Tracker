@@ -2,8 +2,10 @@ body {
     font-family: 'Segoe UI', Arial, sans-serif;
     background-color: #121212;
     color: #ffffff;
-    padding: 20px;
+    padding: 10px;
     margin: 0;
+    /* Prevents accidental double-tap zoom on phones */
+    touch-action: manipulation; 
 }
 
 .tracker-container {
@@ -12,68 +14,105 @@ body {
     text-align: center;
 }
 
-/* Controls styling */
+h1 {
+    font-size: 24px;
+    margin: 15px 0;
+}
+
+/* Controls styling optimized for mobile layout stack */
 .controls-panel {
     background-color: #1e1e1e;
-    padding: 20px;
+    padding: 15px;
     border-radius: 8px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     border: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.input-row {
+.input-row, .input-row-secondary {
     display: flex;
-    justify-content: center;
     gap: 8px;
     align-items: center;
-    margin-bottom: 12px;
+    width: 100%;
 }
 
-.options-row, .global-actions {
-    margin-bottom: 12px;
+.pt-inputs {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.slash {
+    font-weight: bold;
+    font-size: 18px;
 }
 
 input[type="text"], input[type="number"] {
-    padding: 10px;
+    padding: 12px; /* Taller input boxes are easier to tap on mobile */
     border: none;
-    border-radius: 4px;
-    font-size: 14px;
+    border-radius: 6px;
+    font-size: 16px; /* 16px prevents iOS Safari from auto-zooming on focus */
     background-color: #2d2d2d;
     color: white;
+    box-sizing: border-box;
 }
 
+#tokenName { flex-grow: 2; min-width: 0; }
+#tokenKeywords { flex-grow: 2; min-width: 0; }
+#tokenPower, #tokenToughness { width: 45px; text-align: center; }
+#tokenQty { width: 60px; text-align: center; }
+
 button {
-    padding: 10px 15px;
+    padding: 12px 18px;
     background-color: #007acc;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
     font-weight: bold;
+    font-size: 16px;
 }
 
 button:hover { background-color: #005999; }
-.action-btn { background-color: #28a745; }
+.action-btn { background-color: #28a745; width: 100%; }
 .action-btn:hover { background-color: #218838; }
+
+.options-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.options-row label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px; /* Easier to tap target checkboxes */
+}
 
 /* Grid layout for small card shapes */
 .battlefield-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    padding-top: 15px;
+    display: grid;
+    /* Automatically fits as many columns as your phone screen can manage */
+    grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+    gap: 12px;
+    padding-top: 10px;
+    justify-items: center;
 }
 
 /* Card Shape Design (Blue background, White text) */
 .token-card {
     background-color: #0f4c81; 
     color: #ffffff;
-    width: 170px;
-    min-height: 230px;
+    width: 145px;
+    min-height: 200px;
     border: 2px solid #ffffff;
     border-radius: 10px;
-    padding: 12px;
+    padding: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.5);
     display: flex;
     flex-direction: column;
@@ -85,9 +124,10 @@ button:hover { background-color: #005999; }
 
 /* Tap visual mechanics */
 .token-card.tapped {
-    transform: rotate(15deg);
-    filter: brightness(0.7);
+    transform: rotate(90deg); /* Full 90-degree tap turn fits mobile grid alignments cleaner */
+    filter: brightness(0.6);
     border-color: #aaaaaa;
+    z-index: 10; /* Ensures tapped cards overlap nicely if space is small */
 }
 
 .card-header {
@@ -97,19 +137,21 @@ button:hover { background-color: #005999; }
 }
 
 .token-title {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     word-break: break-word;
     text-align: left;
+    max-width: 80%;
 }
 
 .delete-btn {
     background: transparent;
     color: #ff4d4d;
     border: none;
-    font-size: 18px;
+    font-size: 22px; /* Bigger button size for easy thumb removal */
     cursor: pointer;
-    padding: 0 0 0 5px;
+    padding: 0;
+    line-height: 18px;
 }
 
 /* Counters section inside card */
@@ -119,7 +161,7 @@ button:hover { background-color: #005999; }
     padding: 6px;
     margin: 6px 0;
     text-align: left;
-    font-size: 13px;
+    font-size: 12px;
 }
 
 .counter-row {
@@ -129,8 +171,9 @@ button:hover { background-color: #005999; }
 }
 
 .counter-btn {
-    padding: 1px 6px;
-    font-size: 11px;
+    padding: 4px 10px; /* Wider button pads are thumb friendly */
+    font-size: 14px;
+    font-weight: bold;
     background-color: #222;
 }
 
@@ -139,16 +182,16 @@ button:hover { background-color: #005999; }
     display: flex;
     flex-wrap: wrap;
     gap: 4px;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     justify-content: flex-start;
 }
 
 .keyword-badge {
     background-color: rgba(255, 255, 255, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    font-size: 11px;
-    padding: 2px 6px;
-    border-radius: 12px;
+    font-size: 10px;
+    padding: 2px 5px;
+    border-radius: 10px;
     text-transform: capitalize;
 }
 
@@ -157,14 +200,14 @@ button:hover { background-color: #005999; }
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 5px;
+    gap: 4px;
     margin-top: auto;
 }
 
 /* Tap / Untap trigger strip */
 .tap-zone {
     background-color: rgba(255,255,255,0.2);
-    padding: 6px;
+    padding: 8px 4px;
     border-radius: 4px;
     font-size: 11px;
     cursor: pointer;
@@ -178,10 +221,20 @@ button:hover { background-color: #005999; }
     background-color: #ffffff;
     color: #0f4c81;
     font-weight: bold;
-    font-size: 14px;
-    padding: 4px 8px;
+    font-size: 13px;
+    padding: 4px 6px;
     border-radius: 4px;
     border: 1px solid #000;
     white-space: nowrap;
 }
+
+/* Media Query: Adjust structure for very narrow phones */
+@media (max-width: 400px) {
+    .input-row {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    #tokenName { width: 100%; }
+}
+
 
