@@ -19,11 +19,9 @@ addTokenBtn.addEventListener('click', () => {
     const qty = parseInt(tokenQtyInput.value) || 1;
     const layout = document.querySelector('input[name="layoutType"]:checked').value;
 
-    // Convert keywords input comma-separated text into a clean array of strings
     const keywordText = tokenKeywordsInput.value.trim();
     const keywords = keywordText ? keywordText.split(',').map(kw => kw.trim()).filter(kw => kw !== '') : [];
 
-    // Check if P/T inputs are numbers
     const hasNumericPT = !isNaN(basePower) && !isNaN(baseToughness) && basePower !== '' && baseToughness !== '';
 
     const createTokenObject = (uniqueId) => ({
@@ -46,7 +44,6 @@ addTokenBtn.addEventListener('click', () => {
         }
     }
 
-    // Reset inputs & render update
     tokenNameInput.value = '';
     tokenPowerInput.value = '';
     tokenToughnessInput.value = '';
@@ -61,13 +58,10 @@ untapAllBtn.addEventListener('click', () => {
     renderBattlefield();
 });
 
-// Remove All Button Action
+// Remove All Button Action - Optimized to clear without blocking popups
 removeAllBtn.addEventListener('click', () => {
-    // Optional double check challenge to prevent accidental matches wipes
-    if (confirm("Are you sure you want to clear the entire battlefield?")) {
-        tokenList = [];
-        renderBattlefield();
-    }
+    tokenList = [];
+    renderBattlefield();
 });
 
 // Render cards dynamically to HTML
@@ -75,7 +69,6 @@ function renderBattlefield() {
     battlefield.innerHTML = '';
 
     tokenList.forEach(token => {
-        // Calculate dynamic P/T changes based on +1/+1 counters
         let displayPT = "";
         if (token.basePower !== "" || token.baseToughness !== "") {
             if (token.hasNumericPT) {
@@ -87,7 +80,6 @@ function renderBattlefield() {
             }
         }
 
-        // Generate keyword badge elements
         let keywordsHTML = '';
         if (token.keywords && token.keywords.length > 0) {
             keywordsHTML = `<div class="keywords-area">`;
@@ -100,7 +92,6 @@ function renderBattlefield() {
         const card = document.createElement('div');
         card.className = `token-card ${token.isTapped ? 'tapped' : ''}`;
         
-        // Build card HTML body
         card.innerHTML = `
             <div class="card-header">
                 <div class="token-title">
@@ -109,7 +100,6 @@ function renderBattlefield() {
                 <button class="delete-btn" onclick="removeToken(${token.id})">×</button>
             </div>
 
-            <!-- Custom Keyword Pills Layer -->
             ${keywordsHTML}
 
             <div class="counters-area">
@@ -134,7 +124,6 @@ function renderBattlefield() {
     });
 }
 
-// Tap individual card handling
 window.toggleTap = function(id, event) {
     event.stopPropagation();
     const token = tokenList.find(t => t.id === id);
@@ -144,7 +133,6 @@ window.toggleTap = function(id, event) {
     }
 };
 
-// Increment or decrement +1/+1 counters
 window.updateCounter = function(id, counterType, amount, event) {
     event.stopPropagation();
     const token = tokenList.find(t => t.id === id);
@@ -154,7 +142,6 @@ window.updateCounter = function(id, counterType, amount, event) {
     }
 };
 
-// Completely erase token from board
 window.removeToken = function(id) {
     tokenList = tokenList.filter(t => t.id !== id);
     renderBattlefield();

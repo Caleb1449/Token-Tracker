@@ -4,7 +4,6 @@ body {
     color: #ffffff;
     padding: 10px;
     margin: 0;
-    /* Prevents accidental double-tap zoom on phones */
     touch-action: manipulation; 
 }
 
@@ -19,7 +18,6 @@ h1 {
     margin: 15px 0;
 }
 
-/* Controls styling optimized for mobile layout stack */
 .controls-panel {
     background-color: #1e1e1e;
     padding: 15px;
@@ -28,7 +26,7 @@ h1 {
     border: 1px solid #333;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
 }
 
 .input-row, .input-row-secondary {
@@ -50,10 +48,10 @@ h1 {
 }
 
 input[type="text"], input[type="number"] {
-    padding: 12px; /* Taller input boxes are easier to tap on mobile */
+    padding: 12px; 
     border: none;
     border-radius: 6px;
-    font-size: 16px; /* 16px prevents iOS Safari from auto-zooming on focus */
+    font-size: 16px; 
     background-color: #2d2d2d;
     color: white;
     box-sizing: border-box;
@@ -77,17 +75,20 @@ button {
 
 button:hover { background-color: #005999; }
 
-/* Global split utility buttons */
+/* Vertically stacked full-width button rows prevent overlay glitches */
 .global-actions {
     display: flex;
+    flex-direction: column;
     gap: 10px;
     width: 100%;
+    margin-top: 5px;
 }
 
 .action-btn { 
-    flex: 1;
-    font-size: 15px;
-    padding: 12px 5px;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 10px;
+    display: block;
 }
 
 .untap-btn { background-color: #28a745; }
@@ -108,20 +109,17 @@ button:hover { background-color: #005999; }
     display: flex;
     align-items: center;
     gap: 6px;
-    padding: 8px; /* Easier to tap target checkboxes */
+    padding: 8px; 
 }
 
-/* Grid layout for small card shapes */
 .battlefield-grid {
     display: grid;
-    /* Automatically fits as many columns as your phone screen can manage */
     grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
     gap: 12px;
     padding-top: 10px;
     justify-items: center;
 }
 
-/* Card Shape Design (Blue background, White text) */
 .token-card {
     background-color: #0f4c81; 
     color: #ffffff;
@@ -139,12 +137,11 @@ button:hover { background-color: #005999; }
     box-sizing: border-box;
 }
 
-/* Tap visual mechanics */
 .token-card.tapped {
-    transform: rotate(90deg); /* Full 90-degree tap turn fits mobile grid alignments cleaner */
+    transform: rotate(90deg); 
     filter: brightness(0.6);
     border-color: #aaaaaa;
-    z-index: 10; /* Ensures tapped cards overlap nicely if space is small */
+    z-index: 10; 
 }
 
 .card-header {
@@ -165,13 +162,12 @@ button:hover { background-color: #005999; }
     background: transparent;
     color: #ff4d4d;
     border: none;
-    font-size: 22px; /* Bigger button size for easy thumb removal */
+    font-size: 22px; 
     cursor: pointer;
     padding: 0;
     line-height: 18px;
 }
 
-/* Counters section inside card */
 .counters-area {
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 6px;
@@ -188,13 +184,12 @@ button:hover { background-color: #005999; }
 }
 
 .counter-btn {
-    padding: 4px 10px; /* Wider button pads are thumb friendly */
+    padding: 4px 10px; 
     font-size: 14px;
     font-weight: bold;
     background-color: #222;
 }
 
-/* Keyword Container Box */
 .keywords-area {
     display: flex;
     flex-wrap: wrap;
@@ -212,7 +207,6 @@ button:hover { background-color: #005999; }
     text-transform: capitalize;
 }
 
-/* Bottom elements layout */
 .card-footer {
     display: flex;
     justify-content: space-between;
@@ -221,7 +215,6 @@ button:hover { background-color: #005999; }
     margin-top: auto;
 }
 
-/* Tap / Untap trigger strip */
 .tap-zone {
     background-color: rgba(255,255,255,0.2);
     padding: 8px 4px;
@@ -233,7 +226,6 @@ button:hover { background-color: #005999; }
     flex-grow: 1;
 }
 
-/* Power & Toughness box */
 .pt-badge {
     background-color: #ffffff;
     color: #0f4c81;
@@ -245,7 +237,6 @@ button:hover { background-color: #005999; }
     white-space: nowrap;
 }
 
-/* Media Query: Adjust structure for very narrow phones */
 @media (max-width: 400px) {
     .input-row {
         flex-direction: row;
